@@ -1,14 +1,40 @@
 import { usePosts } from '@/utils/queries';
-import { Card, Image, Text, Badge, Button, Group, Loader } from '@mantine/core';
+import { Link } from '@tanstack/react-router';
+import {
+  Card,
+  Image,
+  Text,
+  Badge,
+  Button,
+  Group,
+  Loader,
+  Alert,
+} from '@mantine/core';
+import { usePostContext } from '@/context/PostsContext';
 
 export function Posts() {
-  const { status, data, error } = usePosts();
+  const { posts, setPosts } = usePostContext();
 
-  if (status === 'pending') return <Loader />;
+  // Fetch posts from API if they haven't been fetched yet
+  if (!posts || posts.length === 0) {
+    const { status, data, error, isLoading, isError } = usePosts();
 
-  if (status === 'error') return <div>Error: {error.message}</div>;
+    if (isLoading) {
+      return <Loader />;
+    }
 
-  return data?.map((post: any) => (
+    if (isError) {
+      return <Alert>Error: {error.message}</Alert>;
+    }
+
+    if (status === 'success') {
+      setPosts(data);
+      console.log('Posts fetched from API:', data);
+    }
+  }
+
+  // Render the first 5 posts
+  return posts?.slice(0, 5).map((post: any) => (
     <Card key={post.id} mt='xl' shadow='sm' padding='lg' radius='md' withBorder>
       <Card.Section>
         <Image
@@ -27,7 +53,14 @@ export function Posts() {
         {post.body}
       </Text>
 
-      <Button color='#ff850c' mt='md' radius='md' w={'100px'}>
+      <Button
+        component={Link}
+        to={`/post/${post.id}`}
+        color='#ff850c'
+        mt='md'
+        radius='md'
+        w='100px'
+      >
         Les mer
       </Button>
     </Card>

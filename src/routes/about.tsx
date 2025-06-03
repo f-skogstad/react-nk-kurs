@@ -1,4 +1,4 @@
-import { Title } from '@mantine/core';
+import { Title, Text } from '@mantine/core';
 import { createFileRoute } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/about')({
@@ -6,5 +6,10 @@ export const Route = createFileRoute('/about')({
 });
 
 function AboutComponent() {
-  return <Title>About</Title>;
+  return (
+    <>
+      <Title>About</Title>
+      <Text>Mer informasjon kommer...</Text>
+    </>
+  );
 }
