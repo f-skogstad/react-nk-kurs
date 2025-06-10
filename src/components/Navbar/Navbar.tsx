@@ -2,30 +2,25 @@ import { useState } from 'react';
 import { Box, Burger, Container, Group, Image } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import classes from './Navbar.module.css';
-import { Link } from '@tanstack/react-router';
 import logo from '@/img/logo.png';
+import MenuItem from './MenuItem';
 
 const links = [
-  { link: '/', label: 'Home' },
-  { link: '/about', label: 'About' },
+  { link: '/', label: 'Hjem' },
+  { link: '/about', label: 'Om oss' },
 ];
 
 export function Navbar() {
   const [opened, { toggle }] = useDisclosure(false);
   const [active, setActive] = useState(links[0].link);
 
-  const items = links.map((link) => (
-    <Link
+  const menuItems = links.map((link) => (
+    <MenuItem
       key={link.label}
-      to={link.link}
-      className={classes.link}
-      data-active={active === link.link || undefined}
-      onClick={(e) => {
-        setActive(link.link);
-      }}
-    >
-      {link.label}
-    </Link>
+      link={link}
+      active={active}
+      setActive={setActive}
+    />
   ));
 
   return (
@@ -35,9 +30,8 @@ export function Navbar() {
           <Image src={logo} alt='Mantine logo' />
         </Box>
         <Group gap={5} visibleFrom='xs'>
-          {items}
+          {menuItems}
         </Group>
-
         <Burger opened={opened} onClick={toggle} hiddenFrom='xs' size='sm' />
       </Container>
     </header>

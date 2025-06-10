@@ -4,7 +4,7 @@ import { Outlet, createRootRoute } from '@tanstack/react-router';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { Navbar } from '@/components/Navbar';
+import { Navbar } from '@/components/Navbar/Navbar';
 import { PostProvider } from '@/context/PostsContext';
 
 // Create a client

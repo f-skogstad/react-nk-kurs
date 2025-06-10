@@ -11,7 +11,8 @@ function usePosts() {
       const response = await fetch(
         'https://jsonplaceholder.typicode.com/posts'
       );
-      const data = await response.json();
+      let data = await response.json();
+      data = data.slice(0, 5);
       setPosts(data);
       return data;
     },

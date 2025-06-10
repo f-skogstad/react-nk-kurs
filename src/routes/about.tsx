@@ -8,7 +8,7 @@ export const Route = createFileRoute('/about')({
 function AboutComponent() {
   return (
     <>
-      <Title>About</Title>
+      <Title>Om oss</Title>
       <Text>Mer informasjon kommer...</Text>
     </>
   );
