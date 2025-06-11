@@ -3,7 +3,7 @@ import { type IPost } from '@/types';
 import { usePostContext } from '@/context/PostsContext';
 
 // Get all posts
-function usePosts() {
+function useGetPosts() {
   const { setPosts } = usePostContext();
   return useQuery({
     queryKey: ['posts'],
@@ -20,7 +20,7 @@ function usePosts() {
 }
 
 // Get single post
-function usePost(id: number) {
+function useGetPost(id: number) {
   return useQuery({
     queryKey: ['post', id],
     queryFn: async (): Promise<IPost> => {
@@ -81,4 +81,4 @@ function useDeletePost() {
   });
 }
 
-export { usePosts, usePost, useCreatePost, useUpdatePost, useDeletePost };
+export { useGetPosts, useGetPost, useCreatePost, useUpdatePost, useDeletePost };

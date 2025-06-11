@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
-import { usePosts } from '@/utils/queries';
+import { useGetPosts } from '@/utils/queries';
 import { Loader, Alert } from '@mantine/core';
 import { usePostContext } from '@/context/PostsContext';
 import Post from './Post';
 
 export function Posts() {
   const { posts, setPosts } = usePostContext();
-  const { status, data, error, isLoading, isError } = usePosts();
+  const { status, data, error, isLoading, isError } = useGetPosts();
 
   useEffect(() => {
     if (status === 'success') {

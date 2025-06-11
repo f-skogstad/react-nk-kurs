@@ -21,12 +21,15 @@ const PostContext = createContext<PostContextProps>({
 });
 
 export const PostProvider = ({ children }: PropsWithChildren) => {
+  // State to hold the list of posts
   const [posts, setPosts] = useState<IPost[]>([]);
 
+  // Function to add a new post
   const addNewPost = (post: IPost) => {
     setPosts([...posts, post]);
   };
 
+  // Function to remove a post
   const removePost = (postId: IPost['id']) => {
     setPosts(posts.filter((post) => post.id !== postId));
   };
