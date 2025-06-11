@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Box, Burger, Container, Group, Image } from '@mantine/core';
+import { Box, Container, Group, Image } from '@mantine/core';
 import classes from './Navbar.module.css';
 import logo from '@/img/logo.png';
 import MenuItem from './MenuItem';
